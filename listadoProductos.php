@@ -32,7 +32,7 @@ $datos=$u->getDatos();
 		<table class="table table-bordered">
 			<thead>
 				<tr>
-					<th>Código</th>
+					<th>Códigos</th>
 					<th>Nombre del Producto </th>
 					<th>Descripción</th>
 					<th>Existencia </th>
