@@ -1,8 +1,7 @@
+
 <?php
-//require_once("clases/conectar.php");
 
-
-////////////////// CONEXION A LA BASE DE DATOS //////////////////
+require_once("navbar.php");
 
 $host = 'localhost';
 $basededatos = 'AESystemInventory';
@@ -16,128 +15,223 @@ if ($conexion -> connect_errno) {
 die( "Fallo la conexión : (" . $conexion -> mysqli_connect_errno()
 . ") " . $conexion -> mysqli_connect_error());
 }
-  ///////////////////CONSULTA DE LOS ALUMNOS///////////////////////
 
- ?>
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8">
-    <title>Ingresos</title>
-      <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-      <link rel="stylesheet" href="css/bootstrap.min.css">
+?>
 
-      <!--Creamos las funciones javaScrip-JQuery-->
-      <script src="jquery-3.2.1.min.js"></script>
-      <script>
+<html lang="es">
 
-      		$(function(){
-  				// Clona la fila oculta que tiene los campos base, y la agrega al final de la tabla
-  				$("#adicional").on('click', function(){
-  					$("#tabla tbody tr:eq(0)").clone().removeClass('fila-fija').appendTo("#tabla");
-  				});
+	<head>
+		<title></title>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
 
-  				// Evento que selecciona la fila y la elimina
-  				$(document).on("click",".eliminar",function(){
-  					var parent = $(this).parents().get(0);
-  					$(parent).remove();
-  				});
-  			});
-  		</script>
-  </head>
-  <body>
-    <div class="container" >
-      <div class="panel panel-primary">
-            <div class="panel-heading">
-            <h3 class="panel-title"><center><strong>DETALLE DE INGRESOS</strong></center></h3>
-          </div>
-        <div class="panel-body">
-          <section>
+		<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+		<link rel="stylesheet" href="css/bootstrap.min.css">
+		<script src="jquery-3.2.1.min.js" type="text/javascript"></script>
 
 
-          </section>
+		<script>
+//Funcion Jquery para duplicar columnas de Registros
+    		$(function(){
+				// Clona la fila oculta que tiene los campos base, y la agrega al final de la tabla
+				$("#adicional").on('click', function(){
+					$("#tabla tbody tr:eq(0)").clone().removeClass('fila-fija').appendTo("#tabla");
+				});
 
-          <form class="form-horizontal" role="form" method="post">
-            <table class="table bg-info" id="tabla">
-              <tr class="fila-fija">
-                <td><input type="date" required name="fecha[]" placeholder="Fecha de Ingreso"></input></td>
-                <td><input required name="producto[]" placeholder="idProducto"></input></td>
-                <td><input required name="nombre[]" placeholder="Nombredel Producto"></input></td>
-                <td><input required name="cantida[]" placeholder="Cantidad"></input></td>
-                <td><input required name="precio[]" placeholder="Precio Entrada"></input></td>
-
-
-                <td class="eliminar"><button type="submit" value="Menos -" class="btn btn-success"><span class="glyphicon glyphicon-minus"
-                 aria-hidden="true"></span></button></td>
-              </tr>
-
-            </table>
-
-                <div class="btn-der">
-                <button id="adicional" name="adicional" type="button" class="btn-success btn-lg"><span class="glyphicon glyphicon-plus-sign"
-                 aria-hidden="true"></span><strong></strong></button>
-                 <input type="submit" name="insertar" value="Insertar Registros " class="btn btn-primary btn-lg"  />
-              </div>
-
-            </table>
-          </form>
-
-          <!-- INSERCIÓN-->
-          <?php
-          if(isset($_POST['insertar']))
-          {
-            $registro1=($_POST['fecha']);
-            $registro2=($_POST['producto']);
-            //$registro3=($_POST['nombre']);
-            $registro4=($_POST['cantidad']);
-            $registro5=($_POST['precio']);
-              /////Separamos los valores
-
-              while (true) {
-                # code...//Creamos el arreglo para recuperar los valores
-                $dato1=current($registro1);
-                $dato1=current($registro2);
-                $dato4=current($registro4);
-                $dato5=current($registro5);
-
-                //Asignamos los valores a una variable
-
-           $date=(( $dato1 !== false) ? $dato1 : ", &nbsp;");
-           $code=(( $dato2 !== false) ? $dato2 : ", &nbsp;");
-           $cant=(( $item4 !== false) ? $dato4 : ", &nbsp;");
-           $price=(( $item5 !== false) ? $dato5 : ", &nbsp;");
-
-           //// CONCATENAR LOS VALORES EN ORDEN PARA SU FUTURA INSERCIÓN ////////
-           $valores='('.$date.',"'.$code.'","'.$cant.'","'.$price.'"),';
-
-           //////// YA QUE TERMINA CON COMA CADA FILA, SE RESTA CON LA FUNCIÓN SUBSTR EN LA ULTIMA FILA /////////////////////
-           $valoresQ= substr($valores, 0, -1);
-
-           ///////// QUERY DE INSERCIÓN ////////////////////////////
-           $sql = "INSERT INTO detalleEntradas (null, fechaIngreso, Cantidad, PrecioEntrada, codProducto,null)
-         VALUES $valoresQ";
+				// Evento que selecciona la fila y la elimina
+				$(document).on("click",".eliminar",function(){
+					var parent = $(this).parents().get(0);
+					$(parent).remove();
+				});
+			});
+		</script>
 
 
-        $sqlRes=$conexion->query($sql) or mysql_error();
+
+	</head>
+
+	<body>
+<!-- Formulario de Ingresos-->
+
+	<div class="container">
+		<div class="panel panel-primary">
+				  <div class="panel-heading"><h4><center><strong>Ingresos</strong></center></h4></div>
+				  <div class="panel-body">
+
+			<form class="from-row" method="post">
+
+				<table class="table bg-info"  id="tabla">
+					<tr class="fila-fija">
+<!--Campo idEntrada-->
+					<td><div class="row">
+							<div class="col-lg-12">
+								<label for="id">ID Entrada</label>
+    							<div class="input-group">
+		      							<span class="input-group-btn">
+		      							</span>
+      								  <input type="number" class="form-control" required name="id[]">
+    							</div>
+  					  </div>
+					</td>
+
+<!--Campo codigoproducto-->
+				<td><div class="row">
+						<div class="col-lg-18">
+							<label for="codpro">Codigo del Producto</label>
+								<div class="input-group">
+											<span class="input-group-btn">
+											</span>
+											<input type="text" class="form-control" required name="codpro[]">
+								</div>
+						</div>
+				</td>
+
+				<!--Campo Cantidad-->
+
+				<td><div class="row">
+						<div class="col-lg-18">
+							<label for="cantidad">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Cantidad</label>
+								<div class="input-group">
+											<span class="input-group-btn">
+											</span>
+											<input type="text" class="form-control" required name="cantidad[]">
+								</div>
+						</div>
+				</td>
+<!--Campo PrecioEntrada-->
+
+				<td><div class="row">
+						<div class="col-lg-18">
+							<label for="precio">&nbsp;&nbsp;Precio de Entrada $$</label>
+								<div class="input-group">
+											<span class="input-group-btn">
+
+											</span>
+											<input type="text" class="form-control" required name="precio[]">
+								</div>
+						</div>
+				</td>
+<!--Campo Bodega-->
+
+<td><div class="row">
+		<div class="col-lg-18">
+			<label for="bodega">&nbsp;&nbsp;Bodega</label>
+				<div class="input-group">
+							<span class="input-group-btn">
+
+							</span>
+							<input type="text" class="form-control" required name="bodega[]">
+				</div>
+		</div>
+</td>
+
+<!--Boton Eliminar-->
+
+<td class="eliminar"><div class="row">
+		<div class="col-lg-18">
+			<label for="eliminar">&nbsp;&nbsp;</label>
+				<div class="input-group">
+							<span class="input-group-btn"></span>
+							<!--<input type="button" value="Menos">-->
+							<button type="button" class="btn btn-warning" value="Menos"><strong>Eliminar <strong><span class="glyphicon glyphicon-thumbs-down" aria-hidden="true">
+							</span></button>
 
 
-           //
-           $dato1 = next( $registro1 );
-           $dato2 = next( $registro2);
-           $dato4 = next( $registro4 );
-           $dato5 = next( $registro5 );
 
-           // Check terminator
-           if($dato1 === false && $dato2 === false && $dato4 === false && $dato5 === false) break;
-
-              }
-          }
-
-          ?>
-      </div>
+				</div>
+		</div>
+</td>
 
 
-      </header>
+</tr>
+				</table>
 
-  </body>
+				<div class="btn-der">
+					<button id="adicional" name="adicional" type="button" class="btn btn-success"><span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span>
+						<strong>Agregar Entrada</strong></button>
+					<button type="submit" name="insertar" class="btn btn-primary "><span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span>
+						 <strong>Guardar</strong></button>
+
+
+
+				</div>
+			</form>
+
+  </div>
+</div>
+</div>
+
+
+
+
+
+
+			<?php
+
+				//Eventos del Boton MAS
+				if(isset($_POST['insertar']))
+
+				{
+
+				$items1 = ($_POST['id']);
+				$items2 = ($_POST['codpro']);
+				$items3 = ($_POST['cantidad']);
+				$items4 = ($_POST['precio']);
+				$items5 = ($_POST['bodega']);
+
+
+
+				while(true) {
+
+				    //RECUPERAR LOS VALORES DE LOS ARREGLOS
+				    $item1 = current($items1);
+				    $item2 = current($items2);
+				    $item3 = current($items3);
+				    $item4 = current($items4);
+						$item5 = current($items5);
+
+
+				    //ASIGNARLOS A VARIABLES
+						$id=(( $item1 !== false) ? $item1 : ", &nbsp;");
+						$cod=(( $item2!== false) ? $item2: ", &nbsp;");
+				    $can=(( $item3 !== false) ? $item3 : ", &nbsp;");
+				    $pre=(( $item4 !== false) ? $item4 : ", &nbsp;");
+				    $bod=(( $item5 !== false) ? $item5 : ", &nbsp;");
+
+
+				    //Cocatenamos los valores para insertarlos en el orden correspondiente
+				    $valores='("'.$id.'","'.$cod.'","'.$can.'","'.$pre.'","'.$bod.'"),';
+
+
+				    $valoresQ= substr($valores, 0, -1);
+
+				    //QUERY DE INSERCIÓN
+				    $sql = "INSERT INTO detalleEntradas (idEntrada,codProducto,Cantidad,PrecioEntrada,idBodega)
+					VALUES $valoresQ";
+
+
+					$sqlRes=$conexion->query($sql);
+
+
+
+				    $item1 = next( $items1 );
+				    $item2 = next( $items2 );
+				    $item3 = next( $items3 );
+				    $item4 = next( $items4 );
+						$item5= next( $items5);
+
+
+				    if($item1 === false && $item2 === false && $item3 === false && $item4 === false  && $item5 === false) break;
+
+				}
+
+				}
+
+			?>
+
+
+		</section>
+
+	</body>
+
 </html>

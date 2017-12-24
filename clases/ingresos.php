@@ -19,7 +19,7 @@ class detalleEntradas extends Conectar
 	{
 		$sql="insert into detalleEntradas
 		values
-		 (null,null,'".$_POST["codigopro"]."','".$_POST["cantidad"]."','".$_POST["precio"]."','".$_POST["bodega"]."');";
+		 (null,'".$_POST["codigopro"]."','".$_POST["cantidad"]."','".$_POST["precio"]."','".$_POST["bodega"]."');";
 		 $this->db->query($sql);
 	}
 }
