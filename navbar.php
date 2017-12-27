@@ -24,7 +24,7 @@
 <ul class="nav navbar-nav">
     <li class="active"><a href="listadoProductos.php"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span> Ver Productos</a></li>
     <li class="active"><a href="agregaProducto.php"><span class="glyphicon glyphicon-pencil" aria-hidden="false"></span> Crear Productos</a></li>
-    <li class="active"><a href="ingresos.php"><span class="glyphicon glyphicon-save" aria-hidden="false"></span> Ingresos</a></li>
+    <li class="active"><a href="detalleIngresos.php"><span class="glyphicon glyphicon-save" aria-hidden="false"></span> Ingresos</a></li>
     <li class="active"><a href="agregaProducto.php"><span class="glyphicon glyphicon-export" aria-hidden="false"></span> Salidas</a></li>
     <li><a href="#">Reportes</a></li>
 <!--  <li class="dropdown">

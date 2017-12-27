@@ -52,9 +52,16 @@ $datos=$u->getDatos();
 
 
                             </tr>
+
+
                             <?php
                         }
                         ?>
+												<?php
+													if ($dato->cantidad<50) {
+														alert('Alerta');
+													}
+												 ?>
 			</tbody>
 
 		</table>

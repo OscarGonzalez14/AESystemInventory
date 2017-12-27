@@ -105,8 +105,7 @@ DROP TABLE IF EXISTS `detalleEntradas`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `detalleEntradas` (
-  `idEntrada` int(11) NOT NULL AUTO_INCREMENT,
-  `fechaIngreso` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `idEntrada` int(11) NOT NULL DEFAULT '0',
   `codProducto` varchar(10) DEFAULT NULL,
   `Cantidad` varchar(10) DEFAULT NULL,
   `PrecioEntrada` varchar(10) DEFAULT NULL,
@@ -116,7 +115,7 @@ CREATE TABLE `detalleEntradas` (
   KEY `idBodega` (`idBodega`),
   CONSTRAINT `detalleEntradas_ibfk_1` FOREIGN KEY (`codProducto`) REFERENCES `Productos` (`codProducto`),
   CONSTRAINT `detalleEntradas_ibfk_2` FOREIGN KEY (`idBodega`) REFERENCES `Bodega` (`idBodega`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -171,4 +170,4 @@ CREATE TABLE `ordenProduccion` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-12-22 16:02:32
+-- Dump completed on 2017-12-27 12:35:44

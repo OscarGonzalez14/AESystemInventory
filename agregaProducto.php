@@ -1,11 +1,11 @@
-<?php 
+<?php
 require_once("clases/productos.php");
 
 //($datos);exit;**/
 if (isset($_POST["codigo"])) {
 	$u = new Productos();
 	$u->insertar();
-	
+
 }
 
 ?>
@@ -17,8 +17,8 @@ if (isset($_POST["codigo"])) {
 	<link rel="stylesheet" href="css/bootstrap.min.css">
 </head>
 <body>
-	
-	<div class="container" >	
+
+	<div class="container" >
 		<ol class="breadcrumb">
  	    	<li><a href="index.php">Principal</a></li>
         	<li class="active">Agregar Productos</li>
@@ -39,11 +39,9 @@ if (isset($_POST["codigo"])) {
   		<p>
   			<label for="sel1">Elija una Categoría:</label>
   			<select class="form-control" id="sel1">
-   		  <option>Laminas</option>
-    		<option>Tornillos</option>
-    		<option>Lijas</option>
-   		  <option>Varios</option>
-  </select>
+
+
+  		 </select>
   		</p>
   		<p>
   			<label for="nombre"> Nombre del Producto: </label>
@@ -63,14 +61,14 @@ if (isset($_POST["codigo"])) {
         <p>
         <label for="fecha"> Fecha Creación: </label>
         <input type="date" name="fecha" class="form-control">
-      </p>  		
-  		
+      </p>
+
   		<button type="submit" value="Enviar" class="btn btn-info"><span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span> Crear Producto</button>
 
   		</form>
-   		
+
   	</div>
-	
+
 
 </body>
 </html>
