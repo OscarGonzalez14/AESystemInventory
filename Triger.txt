@@ -1,0 +1,15 @@
+
+mysql> CREATE TRIGGER stock AFTER INSERT ON detalleEntradas
+    -> FOR EACH ROW
+    -> BEGIN
+	DECLARE cant int;
+	
+	DECLARE cursor1 CURSOR FOR 
+	
+	select Cantidad as cant from detalleEntradas where idEntrada=(select Max(idEntrada) from detalleEntradas);
+	
+	UPDATE Productos SET Existencia = Existencia + cant where
+
+    ->     
+    -> END;
+

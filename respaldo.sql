@@ -40,7 +40,7 @@ CREATE TABLE `Categoria` (
   `idCategoria` int(11) NOT NULL AUTO_INCREMENT,
   `nombreCategoria` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`idCategoria`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -73,6 +73,8 @@ CREATE TABLE `Productos` (
   `fechaCreacion` date DEFAULT NULL,
   `idCategoria` int(11) DEFAULT NULL,
   `idProveedor` varchar(20) DEFAULT NULL,
+  `sku` varchar(45) DEFAULT NULL,
+  `Existencia` int(11) DEFAULT NULL,
   PRIMARY KEY (`codProducto`),
   KEY `idCategoria` (`idCategoria`),
   KEY `idProveedor` (`idProveedor`),
@@ -105,7 +107,7 @@ DROP TABLE IF EXISTS `detalleEntradas`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `detalleEntradas` (
-  `idEntrada` int(11) NOT NULL DEFAULT '0',
+  `idEntrada` int(11) NOT NULL AUTO_INCREMENT,
   `codProducto` varchar(10) DEFAULT NULL,
   `Cantidad` varchar(10) DEFAULT NULL,
   `PrecioEntrada` varchar(10) DEFAULT NULL,
@@ -115,8 +117,26 @@ CREATE TABLE `detalleEntradas` (
   KEY `idBodega` (`idBodega`),
   CONSTRAINT `detalleEntradas_ibfk_1` FOREIGN KEY (`codProducto`) REFERENCES `Productos` (`codProducto`),
   CONSTRAINT `detalleEntradas_ibfk_2` FOREIGN KEY (`idBodega`) REFERENCES `Bodega` (`idBodega`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=2312 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8 */ ;
+/*!50003 SET character_set_results = utf8 */ ;
+/*!50003 SET collation_connection  = utf8_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = '' */ ;
+DELIMITER ;;
+/*!50003 CREATE*/ /*!50017 DEFINER=`root`@`localhost`*/ /*!50003 TRIGGER stock AFTER INSERT ON detalleEntradas
+    FOR EACH ROW
+    	 
+        UPDATE Productos SET Existencia = Existencia + new.Cantidad where     								           		codProducto=new.codProducto */;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
 
 --
 -- Table structure for table `detalleSalida`
@@ -140,8 +160,26 @@ CREATE TABLE `detalleSalida` (
   CONSTRAINT `detalleSalida_ibfk_1` FOREIGN KEY (`codProducto`) REFERENCES `Productos` (`codProducto`),
   CONSTRAINT `detalleSalida_ibfk_2` FOREIGN KEY (`idOrden`) REFERENCES `ordenProduccion` (`idOrden`),
   CONSTRAINT `fk_detalleSalida_detalleEntradas1` FOREIGN KEY (`idEntrada`) REFERENCES `detalleEntradas` (`idEntrada`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8 */ ;
+/*!50003 SET character_set_results = utf8 */ ;
+/*!50003 SET collation_connection  = utf8_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = '' */ ;
+DELIMITER ;;
+/*!50003 CREATE*/ /*!50017 DEFINER=`root`@`localhost`*/ /*!50003 TRIGGER dieferencia AFTER INSERT ON detalleSalida
+    FOR EACH ROW
+     
+    UPDATE Productos SET Existencia = Existencia - new.cantidaSalida where codProducto=new.codProducto */;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
 
 --
 -- Table structure for table `ordenProduccion`
@@ -170,4 +208,4 @@ CREATE TABLE `ordenProduccion` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-12-27 12:35:44
+-- Dump completed on 2017-12-30 11:22:13

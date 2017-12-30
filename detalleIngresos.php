@@ -1,19 +1,14 @@
 
 <?php
 require_once("navbar.php");
-$host = 'localhost';
-$basededatos = 'AESystemInventory';
-$usuario = 'root';
-$contraseña = 'oscar14';
+require_once("clases/conexion.php");
+$query = "select idCategoria,nombreCategoria from Categoria order by nombreCategoria ASC";
+$resultado=$mysqli->query($query);
 
 
-
-$conexion = new mysqli($host, $usuario,$contraseña, $basededatos);
-if ($conexion -> connect_errno) {
-die( "Fallo la conexión : (" . $conexion -> mysqli_connect_errno()
-. ") " . $conexion -> mysqli_connect_error());
-}	
 ?>
+
+
 
 <html lang="es">
 
@@ -26,12 +21,7 @@ die( "Fallo la conexión : (" . $conexion -> mysqli_connect_errno()
 		<link rel="stylesheet" href="css/bootstrap.min.css">
 		<script src="jquery-3.2.1.min.js" type="text/javascript"></script>
 		<script src="js/ingresosMultiples.js" type="text/javascript"></script>
-
-
-		<!--Funcion Jquery para duplicar columnas de Registros-->
-
-
-
+		<script language="javascript" src="js/selectDinamicos.js" ></script>
 
 	</head>
 
@@ -47,31 +37,40 @@ die( "Fallo la conexión : (" . $conexion -> mysqli_connect_errno()
 
 				<table class="table bg-info"  id="tabla">
 					<tr class="fila-fija">
-<!--Campo idEntrada-->
+<!--Seleccionar Categoria-->
 					<td><div class="row">
 							<div class="col-lg-12">
-								<label for="id">ID Entrada</label>
+								<label for="categoria">Categoria</label>
     							<div class="input-group">
-		      							<span class="input-group-btn">
-		      							</span>
-      								  <input type="number" class="form-control" required name="id[]">
+		      							<select class="form-control" name="cbx_categoria" id="cbx_categoria">
+		      								<option value="0"> Seleccione Categoria</option>
+		      								<?php while($row = $resultado->fetch_assoc()) {?>
+		      									<option value="<?php echo $row['idCategoria'];?>" ><?php echo $row['nombreCategoria'];?></option>
+		      									<?php } ?>
+		      							</select>
     							</div>
+    					</div>
   					  </div>
 					</td>
 
-<!--Campo codigoproducto-->
-				<td><div class="row">
-						<div class="col-lg-18">
-							<label for="codpro">Codigo del Producto</label>
-								<div class="input-group">
-											<span class="input-group-btn">
-											</span>
-											<input type="text" class="form-control" required name="codpro[]">
-								</div>
-						</div>
-				</td>
 
-				<!--Campo Cantidad-->
+
+					<td><div class="row">
+							<div class="col-lg-12">
+								<label for="categoria">Producto</label>
+    							<div class="input-group">
+		      				<!--<div><select name="cbx_producto" id="cbx_producto"></select></div>-->
+									<select class="form-control" name="cbx_producto" id="cbx_producto"></select>
+
+    							</div>
+    						</div>
+  					    </div>
+					</td>
+
+
+
+
+<!--Campo Cantidad-->
 
 				<td><div class="row">
 						<div class="col-lg-18">
@@ -146,72 +145,44 @@ die( "Fallo la conexión : (" . $conexion -> mysqli_connect_errno()
 </div>
 </div>
 
-
-
-
-
-
-			<?php
-
+<?php
 				//Eventos del Boton MAS
 				if(isset($_POST['insertar']))
-
 				{
-
-				$items1 = ($_POST['id']);
+				//$items1 = ($_POST['id']);
 				$items2 = ($_POST['codpro']);
 				$items3 = ($_POST['cantidad']);
 				$items4 = ($_POST['precio']);
 				$items5 = ($_POST['bodega']);
-
-
-
 				while(true) {
-
 				    //RECUPERAR LOS VALORES DE LOS ARREGLOS
-				    $item1 = current($items1);
+
 				    $item2 = current($items2);
 				    $item3 = current($items3);
 				    $item4 = current($items4);
-						$item5 = current($items5);
-
-
+					$item5 = current($items5);
 				    //ASIGNARLOS A VARIABLES
-						$id=(( $item1 !== false) ? $item1 : ", &nbsp;");
-						$cod=(( $item2!== false) ? $item2: ", &nbsp;");
+						//$id=(( $item1 !== false) ? $item1 : ", &nbsp;");
+					$cod=(( $item2!== false) ? $item2: ", &nbsp;");
 				    $can=(( $item3 !== false) ? $item3 : ", &nbsp;");
 				    $pre=(( $item4 !== false) ? $item4 : ", &nbsp;");
 				    $bod=(( $item5 !== false) ? $item5 : ", &nbsp;");
-
-
 				    //Cocatenamos los valores para insertarlos en el orden correspondiente
-				    $valores='("'.$id.'","'.$cod.'","'.$can.'","'.$pre.'","'.$bod.'"),';
-
-
+				    $valores='("'.$cod.'","'.$can.'","'.$pre.'","'.$bod.'"),';
 				    $valoresQ= substr($valores, 0, -1);
-
 				    //QUERY DE INSERCIÓN
-				    $sql = "INSERT INTO detalleEntradas (idEntrada,codProducto,Cantidad,PrecioEntrada,idBodega)
+				    $sql = "INSERT INTO detalleEntradas
+				    (idEntrada,codProducto,Cantidad,PrecioEntrada,idBodega)
 					VALUES $valoresQ";
-
-
-					$sqlRes=$conexion->query($sql);
-
-
-
-				    $item1 = next( $items1 );
+					  $sqlRes=$mysqli->query($sql);
+				    //$item1 = next( $items1 );
 				    $item2 = next( $items2 );
 				    $item3 = next( $items3 );
 				    $item4 = next( $items4 );
-						$item5= next( $items5);
-
-
-				    if($item1 === false && $item2 === false && $item3 === false && $item4 === false  && $item5 === false) break;
-
+   					$item5= next( $items5);
+				    if($item2 === false && $item3 === false && $item4 === false  && $item5 === false) break;
 				}
-
 				}
-
 			?>
 
 

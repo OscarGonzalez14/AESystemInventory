@@ -1,4 +1,5 @@
 <?php
+require_once("clases/conexion.php");
 require_once("clases/productos.php");
 $u = new Productos();
 $datos=$u->getDatos();
@@ -14,11 +15,15 @@ $datos=$u->getDatos();
      <link rel="stylesheet" href="css/bootstrap.min.css">
 </head>
 <body>
+
 	<nav aria-label="breadcrumb" role="navigation">
 	  <ol class="breadcrumb">
 	    <li class="breadcrumb-item"><a href="index.php">Principal</a></li>
 	    <li class="breadcrumb-item active" aria-current="page">Listado de Productos</li>
 	  </ol>
+
+	
+
 	</nav>
 	<div class="container" >
 		<div class="panel panel-primary">
@@ -26,9 +31,20 @@ $datos=$u->getDatos();
     			<h3 class="panel-title">Listado de Productos</h3>
   			</div>
   		<div class="panel-body">
-   			<p>
-   				<a href="agregaProducto.php" class="btn btn-success btn-lg"><span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span> Agregar</a>
-   			</p>
+   			
+   				<a href="agregaProducto.php" class="btn btn-success "><span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span> Agregar Producto</a>
+   			
+
+			
+			  <div class="col-lg-6">
+			    <div class="input-group">
+			      <span class="input-group-btn">
+			        <button class="btn btn-secondary" type="button">Buscar Producto</button>
+			      </span>
+			      <input type="text" class="form-control" name="buscar" id="buscar" placeholder="Busca Por Codigo o Nombre" aria-label="">
+			    </div>
+			    <hr>
+		</div>
 		<table class="table table-bordered">
 			<thead>
 				<tr>
@@ -47,7 +63,7 @@ $datos=$u->getDatos();
                                 <td> <?php echo $dato->codProducto ?> </td>
                                 <td> <?php echo $dato->nombreProducto?> </td>
                                 <td> <?php echo $dato->Descripcion ?> </td>
-																  <td> <?php echo $dato->cantidad ?> </td>
+							    <td> <?php echo $dato->cantidad ?> </td>
 
 
 
@@ -57,11 +73,7 @@ $datos=$u->getDatos();
                             <?php
                         }
                         ?>
-												<?php
-													if ($dato->cantidad<50) {
-														alert('Alerta');
-													}
-												 ?>
+												
 			</tbody>
 
 		</table>
