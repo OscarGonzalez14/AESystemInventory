@@ -1,17 +1,21 @@
-$(buscar_datos());
+$(document).ready(function(){
+  $('#search').focus()
 
-function buscar_datos(consulta)
-{
-	$.ajax({
-		url:'./listadoProductos.php',
-		type:'POST',
-		dataType:'html',
-		data:{consulta:consulta},
-	})
-	.done(function(respuesta){
-		$("#datos").html(respuesta);
-	})
-	.fail(function(){
-		console.log("error");
-	})
-}
+  $('#search').on('keyup', function(){
+    var search = $('#search').val()
+    $.ajax({
+      type: 'POST',
+      url: 'Helpers/search.php',
+      data: {'search': search},
+      beforeSend: function(){
+      $('#result')
+      }
+    })
+    .done(function(resultado){
+      $('#result').html(resultado)
+    })
+    .fail(function(){
+      alert('Se Produjo un Error :(')
+    })
+  })
+})

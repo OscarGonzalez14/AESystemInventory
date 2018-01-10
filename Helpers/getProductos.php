@@ -1,6 +1,8 @@
 <?php
+
 	require ('../clases/conexion.php');
-  $id_estado = $_POST['id_estado'];
+   
+    $id_estado = $_POST['id_estado'];
 
 	$queryM = "SELECT codProducto,nombreProducto FROM Productos where idCategoria= '$id_estado' ORDER BY nombreProducto ASC";
 	$resultadoM = $mysqli->query($queryM);

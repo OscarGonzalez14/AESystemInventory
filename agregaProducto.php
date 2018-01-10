@@ -5,7 +5,8 @@ require_once("clases/conexion.php");
 $query = "select idCategoria,nombreCategoria from Categoria order by nombreCategoria ASC";
 $resultado=$mysqli->query($query);
 
-
+$query2 = "select idProveedor, nombreProveedor from Proveedor";
+$resultado2=$mysqli->query($query2);
 
 //($datos);exit;**/
 if (isset($_POST["codigo"])) {
@@ -29,7 +30,7 @@ if (isset($_POST["codigo"])) {
  	    	<li><a href="index.php">Principal</a></li>
         	<li class="active">Agregar Productos</li>
         </ol>
-
+ 
 		<div class="panel panel-primary">
         	<div class="panel-heading">
     			<h3 class="panel-title"><center><strong>Agregar Productos</strong></center></h3>
@@ -37,14 +38,14 @@ if (isset($_POST["codigo"])) {
   		<div class="panel-body">
 
   		<form name="form" action="" method="post">
-  		<p>
+  		<div class="form-group col-md-6">
   			<label for="codigo"> Código del Producto: </label>
-  			<input type="text" name="codigo">
-  		</p>
+  			<input class="form-control" type="text" name="codigo">
+  		</div>
 
-  		<p>
+  		<p class="form-group col-md-6">
   			<label for="categoria">Elija una Categoría:</label>
-				<select class="form-control" name="cbx_categoria" id="cbx_categoria">
+				<select class="form-control" name="categoria" id="categoria">
 					<option value="0"> Seleccione Categoria</option>
 					<?php while($row = $resultado->fetch_assoc()) {?>
 						<option value="<?php echo $row['idCategoria'];?>" ><?php echo $row['nombreCategoria'];?></option>
@@ -52,51 +53,40 @@ if (isset($_POST["codigo"])) {
 				</select>
   		</p>
 
-  		<p>
+  		<p class="form-group col-md-12" >
   			<label for="nombre"> Nombre del Producto: </label>
   			<input type="text" name="nombre" class="form-control">
   		</p>
 
-  		<p>
+  		<p class="form-group col-md-12">
   			<label for="descripcion"> Descripción del Producto: </label>
   			<input type="text" name="descripcion" class="form-control">
   		</p>
 
-  			<p>
+  		<p class= "form-group col-md-4" >
   			<label for="stock"> Stock Minimo: </label>
   			<input type="number" name="stock" class="form-control">
   		</p>
 
-			<p>
-			<label for="precio"> Precio: </label>
-			<input type="number" name="precio" class="form-control">
-		</p>
 
-    <p>
+    <p class="form-group col-md-4">
       <label for="sku"> SKU de Proveedor: </label>
       <input type="text" name="sku" class="form-control">
     </p>
 
-          <p>
-        <label for="proveedor">Proveedor:</label>
-        <select class="form-control" id="proveedor">
-          <option value="proveedor">Seleccione:</option>
-          <?php
-            $query = $mysqli -> query ("select nombreProveedor from Proveedor;");
-            while ($valores = mysqli_fetch_array($query)) {
-             echo '<option value="categoria'.$valores[idProveedor].'">'.$valores[nombreProveedor].'</option>';
-            }
-          ?>
+    <p class="form-group col-md-4">
+        <label for="categoria">Elija Proveedor:</label>
+        <select class="form-control" name="proveedor" id="proveedor">
+          <option value="0"> Seleccione Proveedor</option>
+          <?php while($row = $resultado2->fetch_assoc()) {?>
+            <option value="<?php echo $row['idProveedor'];?>" ><?php echo $row['nombreProveedor'];?></option>
+            <?php } ?>
         </select>
       </p>
 
 
-        <p>
-        <label for="fecha"> Fecha Creación: </label>
-        <input type="date" name="fecha" class="form-control">
-      </p>
-
-  		<button type="submit" value="Enviar" class="btn btn-info"><span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span> Crear Producto</button>
+ 
+  		<button type="submit" value="Enviar" class="btn btn-primary btn-lg btn-block"><span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span> Crear Producto</button>
 
   		</form>
 

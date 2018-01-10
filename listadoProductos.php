@@ -63,7 +63,7 @@ $datos=$u->getDatos();
                                 <td> <?php echo $dato->codProducto ?> </td>
                                 <td> <?php echo $dato->nombreProducto?> </td>
                                 <td> <?php echo $dato->Descripcion ?> </td>
-							    <td> <?php echo $dato->cantidad ?> </td>
+							    <td> <?php echo $dato->Existencia ?> </td>
 
 
 

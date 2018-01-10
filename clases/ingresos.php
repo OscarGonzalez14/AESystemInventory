@@ -4,7 +4,7 @@ require_once("conectar.php");
 /**
 *
 */
-class detalleEntradas extends Conectar
+class Entradas extends Conectar
 {
 	private $db;
 
@@ -19,10 +19,8 @@ class detalleEntradas extends Conectar
 	{
 		$sql="insert into detalleEntradas
 		values
-		 (null,'".$_POST["codigopro"]."','".$_POST["cantidad"]."','".$_POST["precio"]."','".$_POST["bodega"]."');";
+		 (null,CURRENT_TIMESTAMP,'".($_POST["search"])."','".$_POST["cantidad"]."','".$_POST["unitario"]."',
+		 '".$_POST["bodega"]."','".$_POST["proveedor"]."','".$_POST["sku"]."','".$_POST["cff"]."');";
 		 $this->db->query($sql);
 	}
 }
-
-
-?>

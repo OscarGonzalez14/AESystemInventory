@@ -18,7 +18,7 @@ class Productos extends Conectar
 	{
 		$salida="";
 		$sql="
-			select p.codProducto,nombreProducto,p.Descripcion, sum(cantidad) as cantidad from Productos p join detalleEntradas e where p.codProducto=e.codProducto group by codProducto;
+			select codProducto, nombreProducto, Descripcion, Existencia from Productos group by codProducto;
 		";
 
 		$datos = $this->db->query($sql);
@@ -35,8 +35,8 @@ class Productos extends Conectar
 		$sql="insert into Productos
 		values
 		 ('".$_POST["codigo"]."','".$_POST["nombre"]."','".$_POST["descripcion"]."',
-		 '".$_POST["stock"]."','".$_POST["precio"]."', '".$_POST["fecha"]."',
-		 '".$_POST["categoria"]."','".$_POST["proveedor"]."','".$_POST["sku"]."');";
+		 '".$_POST["stock"]."',0, CURRENT_TIMESTAMP,
+		 '".$_POST["categoria"]."','".$_POST["proveedor"]."','".$_POST["sku"]."',0);";
 		 $this->db->query($sql);
 	}
 }

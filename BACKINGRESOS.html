@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Ingreso Productos</title>
+	     <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+     <link rel="stylesheet" href="css/bootstrap.min.css">
+     <script>
+  var dato = $('#fila').val();
+    $.ajax({
+       data: {"dato" : dato},
+       url: "ingresoProductos.php",
+       type: "post",
+    success:  function (response) {
+       alert(response);
+    });
+ </script>
+</head>
+<body>
+<div class="container">
+ 
+
+  <div class="panel panel-primary">
+        <div class="panel-heading">
+    		<h3 class="panel-title"><center><strong>Agregar Productos</strong></center></h3>
+  		</div>
+<div>
+		<form action="ingresoProductos.php" method="post">
+		  
+		     <input type="number" name="fila"/>
+		     
+		     <input type="submit" value="Enviar" value="">
+		</form>
+</div>
+<div>
+
+ 	<form action="" id="form_insert">
+  		
+	<?php
+	$a= $_POST["fila"];
+
+for ($i=1; $i <=$a; $i++) { ?>
+	<div class="f1-3">
+	<label for="">Marca</label>
+		<input placeholder="ingrese la marca" >
+	</div>
+	<div>
+		<input placeholder="ingrese la marca">
+	</div>
+	<div>
+		<input placeholder="ingrese la marca">
+	</div>
+
+
+<?php }?>
+		
+</form>
+</div>
+
+
+</div>
+
+</body>
+</html>
