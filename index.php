@@ -5,12 +5,14 @@
   <title>Home</title>
      <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
      <link rel="stylesheet" href="css/bootstrap.min.css">
+     <link rel="stylesheet" href="js/jquery-3.2.1.min.js">
+
 </head>
 <body>
 <!--  <p>
           <a href="listadoProductos.php" class="btn btn-primary"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span> Ver Productos</a>
         </p>-->
-        <nav class="navbar navbar-default" role="navigation">
+<nav class="navbar navbar-default" role="navigation">
   <!-- El logotipo y el icono que despliega el menú se agrupan
        para mostrarlos mejor en los dispositivos móviles -->
   <div class="navbar-header">
@@ -32,34 +34,10 @@
         <li class="active"><a href="agregaProducto.php"><span class="glyphicon glyphicon-pencil" aria-hidden="false"></span> Crear Productos</a></li>
         <li class="active"><a href="ingresosProducto.php"><span class="glyphicon glyphicon-save" aria-hidden="false"></span> Ingresos</a></li>
         <li class="active"><a href="detalleSalidas.php"><span class="glyphicon glyphicon-export" aria-hidden="false"></span> Salidas</a></li>
-        <li><a href="#">Reportes</a></li>
+        <li class="active"><a href="ordenesProduccion.php"><span class="glyphicon glyphicon-list-alt" aria-hidden="false"></span> Ordenes</a></li>
         
-    <!--  <li class="dropdown">
-        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-          Menú #1 <b class="caret"></b>
-        </a>
-        <ul class="dropdown-menu">
-          <li><a href="#">Acción #1</a></li>
-          <li><a href="listadoProductos.php">listadoProductos</a></li>
-          <li><a href="#">Movimientos</a></li>
-          <li class="divider"></li>
-          <li><a href="#">Reportes</a></li>
-          <li class="divider"></li>
-          <li><a href="#"></a></li>
-        </ul>
-      </li>-->
     </ul>
 
-    <form class="navbar-form navbar-left" role="search">
-      <div class="form-group">
-        <input type="text" class="form-control" placeholder="Buscar en AESystemInventory">
-      </div>
-      <button type="submit" class="btn btn-default">Buscar</button>
-    </form>
-
-
-      </li>
-    </ul>
   </div>
 </nav>
 <br>

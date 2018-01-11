@@ -58,6 +58,7 @@ $datos=$u->getDatos();
                         <?php
                         foreach($datos as $dato)
                         {
+                        	
                             ?>
                             <tr>
                                 <td> <?php echo $dato->codProducto ?> </td>

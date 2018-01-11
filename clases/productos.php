@@ -35,8 +35,8 @@ class Productos extends Conectar
 		$sql="insert into Productos
 		values
 		 ('".$_POST["codigo"]."','".$_POST["nombre"]."','".$_POST["descripcion"]."',
-		 '".$_POST["stock"]."',0, CURRENT_TIMESTAMP,
-		 '".$_POST["categoria"]."','".$_POST["proveedor"]."','".$_POST["sku"]."',0);";
+		 0, CURRENT_TIMESTAMP,
+		 '".$_POST["categoria"]."',0,'".$_POST["stock"]."');";
 		 $this->db->query($sql);
 	}
 }

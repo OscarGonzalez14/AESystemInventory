@@ -10,7 +10,8 @@ function search()
   $query = "SELECT nombreProducto,codProducto FROM Productos WHERE codProducto LIKE '%$search%' LIMIT 5";
   $res = $mysqli->query($query);
   while ($row = $res->fetch_array(MYSQLI_ASSOC)) {
-    echo "<p><strong>$row[codProducto]</strong> $row[nombreProducto] </p>";
+  echo "<p><strong>$row[codProducto]</strong> $row[nombreProducto] </p>";
+
    
   }
 }

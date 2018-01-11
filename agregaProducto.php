@@ -5,9 +5,6 @@ require_once("clases/conexion.php");
 $query = "select idCategoria,nombreCategoria from Categoria order by nombreCategoria ASC";
 $resultado=$mysqli->query($query);
 
-$query2 = "select idProveedor, nombreProveedor from Proveedor";
-$resultado2=$mysqli->query($query2);
-
 //($datos);exit;**/
 if (isset($_POST["codigo"])) {
 	$u = new Productos();
@@ -67,22 +64,6 @@ if (isset($_POST["codigo"])) {
   			<label for="stock"> Stock Minimo: </label>
   			<input type="number" name="stock" class="form-control">
   		</p>
-
-
-    <p class="form-group col-md-4">
-      <label for="sku"> SKU de Proveedor: </label>
-      <input type="text" name="sku" class="form-control">
-    </p>
-
-    <p class="form-group col-md-4">
-        <label for="categoria">Elija Proveedor:</label>
-        <select class="form-control" name="proveedor" id="proveedor">
-          <option value="0"> Seleccione Proveedor</option>
-          <?php while($row = $resultado2->fetch_assoc()) {?>
-            <option value="<?php echo $row['idProveedor'];?>" ><?php echo $row['nombreProveedor'];?></option>
-            <?php } ?>
-        </select>
-      </p>
 
 
  
