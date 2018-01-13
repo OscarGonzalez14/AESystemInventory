@@ -51,29 +51,39 @@ $datos=$u->getDatos();
 					<th>Códigos</th>
 					<th>Nombre del Producto </th>
 					<th>Descripción</th>
-					<th>Existencia </th>
+					<th width="3%">Existencia </th>
+					<th width="3%">Estado</th>
+
 				</tr>
 			</thead>
 			<tbody>
-                        <?php
-                        foreach($datos as $dato)
-                        {
-                        	
+<?php
+
+  foreach($datos as $dato)
+                        {   
+                         
                             ?>
                             <tr>
                                 <td> <?php echo $dato->codProducto ?> </td>
                                 <td> <?php echo $dato->nombreProducto?> </td>
                                 <td> <?php echo $dato->Descripcion ?> </td>
-							    <td> <?php echo $dato->Existencia ?> </td>
+                                <td><b><center> <?php echo $dato->Existencia ?></center></b> </td>
+                                <?php
+                                 if($dato->Existencia <= $dato->stock){
+                           echo "<td style='background-color:#F6CECE;'>"."<b>Bajo</b>";
+                            }else{
+                            	 echo "<td style='background-color:#A9F5F2;'>"."<b>OK</b>";
+                            }
 
-
-
+                                ?>
                             </tr>
 
 
                             <?php
+
                         }
-                        ?>
+                        ?>                      
+							
 												
 			</tbody>
 

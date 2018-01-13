@@ -30,7 +30,7 @@
        otro elemento que se pueda ocultar al minimizar la barra -->
   <div class="collapse navbar-collapse navbar-ex1-collapse">
     <ul class="nav navbar-nav">
-        <li class="active"><a href="listadoProductos.php"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span> Ver Productos</a></li>
+        <li class="active"><a href="verProductos.php"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span> Ver Productos</a></li>
         <li class="active"><a href="agregaProducto.php"><span class="glyphicon glyphicon-pencil" aria-hidden="false"></span> Crear Productos</a></li>
         <li class="active"><a href="ingresosProducto.php"><span class="glyphicon glyphicon-save" aria-hidden="false"></span> Ingresos</a></li>
         <li class="active"><a href="detalleSalidas.php"><span class="glyphicon glyphicon-export" aria-hidden="false"></span> Salidas</a></li>
@@ -50,4 +50,5 @@
 <button type="button" class="btn btn-primary btn-block"><strong><h2>*Trabajo en Progreso*</h2></strong><hr></button>
 
 </body>
+
 </html>

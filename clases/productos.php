@@ -18,12 +18,13 @@ class Productos extends Conectar
 	{
 		$salida="";
 		$sql="
-			select codProducto, nombreProducto, Descripcion, Existencia from Productos group by codProducto;
+			select codProducto, nombreProducto, Descripcion, Existencia,stock from Productos group by codProducto;
 		";
 
 		$datos = $this->db->query($sql);
 		$arreglo = array();
 		while ($reg=$datos->fetch_object()) {
+			
 			# code...
 			$arreglo[]=$reg;
 

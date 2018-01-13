@@ -39,27 +39,27 @@ if (isset($_POST["search"])) {
 
   		<form name="form" action="" method="post">
 
-			<div class="form-group col-md-6">
+			<div class="form-group col-md-2">
     			<label for="codigo"> Codigo Producto</label>
     			<input class="form-control" type="text" autocomplete="off" name="search" id="search">
   		</div>
 
 
-      <div class="form-group col-md-6">
+      <div class="form-group col-md-3">
           <label for="codigo"> Cantidad: </label>
           <input class="form-control" type="text" required name="cantidad" id="cantidad">
       </div>
 
-      <div class="form-group col-md-6">
+      <!--<div class="form-group col-md-3">
           <label for="codigo"> Precio de Salida: </label>
           <input class="form-control" type="text" name="precio" id="precio">
       </div>
 
-      <!--<div class="form-group col-md-6">
+      <div class="form-group col-md-6">
           <label for="codigo"> Orden: </label>
           <input class="form-control" type="text" name="orden" id="orden">
       </div>-->
-      <p class="form-group col-md-6">
+      <p class="form-group col-md-3">
         <label for="categoria">Orden:</label>
         <select class="form-control" name="orden" id="categoria">
           <option value="0"> Seleccione Orden</option>
@@ -81,7 +81,10 @@ if (isset($_POST["search"])) {
     </div>         
     </div>
 
- 
+ <!--<?php
+//require_once("ordenesProduccion.php");
+
+ ?>-->
 
 
 </body>
