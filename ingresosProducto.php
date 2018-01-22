@@ -104,7 +104,7 @@ if (isset($_POST["search"])) {
       </div>
 
       <div class="form-group col-md-2">
-          <label for="codigo">CFF: </label>
+          <label for="codigo">CCF: </label>
           <input class="form-control" type="text" name="cff" id="cff"  autocomplete="off">
       </div>
 

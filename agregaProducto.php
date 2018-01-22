@@ -19,8 +19,20 @@ if (isset($_POST["codigo"])) {
 	<meta charset="UTF-8">
 	<title>..::Agregar Productos::..</title>
 	<link rel="stylesheet" href="css/bootstrap.min.css">
+
+<script>
+function validateForm() {
+    var x = document.forms["form"]["nombre"].value;
+    var z = document.forms["form"]["codigo"].value;
+    if (x == "" || z=="") {
+        alert("Debe llenar todos los campos");
+        return false;
+    }
+}
+</script>
 </head>
-<body>
+
+
 
 	<div class="container" >
 		<ol class="breadcrumb">
@@ -34,10 +46,10 @@ if (isset($_POST["codigo"])) {
   			</div>
   		<div class="panel-body">
 
-  		<form name="form" action="" method="post">
+  		<form name="form" action="" method="post" onsubmit="return validateForm()">
   		<div class="form-group col-md-6">
   			<label for="codigo"> Código del Producto: </label>
-  			<input class="form-control" type="text" name="codigo">
+  			<input class="form-control" type="text" name="codigo" >
   		</div>
 
   		<p class="form-group col-md-6">

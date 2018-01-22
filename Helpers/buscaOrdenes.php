@@ -1,12 +1,13 @@
 <?php
-//$mysqli = new mysqli('localhost', 'root', 'oscar14', 'AESystemInventory');
+
 require ('../clases/conexion.php');
 
-//////////////// VALORES INICIALES ///////////////////////
 
+//////////////// VALORES INICIALES ///////////////////////
+$total=0;
 $tabla="";
 $tabla1="";
-$query="SELECT o.fechaCreacion as Fecha, o.idOrden as NoOrden, m.nombre as Mecanico,o.Cliente, o.equipo as Equipo,o.medidas,p.nombreProducto, SUM(d.CantidaSalida) as cantidad, d.precioSalida,ROUND(SUM(d.precioSalida*d.CantidaSalida),1) as costo from detalleSalida d join ordenProduccion o on d.idOrden=o.idOrden join Productos p on d.codProducto=p.codProducto join Mecanico m on m.idMecanico=o.idMecanico WHERE o.idOrden LIKE '%rde%' GROUP BY p.codProducto;";
+$query="SELECT o.fechaCreacion as Fecha, o.idOrden as NoOrden, m.nombre as Mecanico,o.Cliente, o.equipo as Equipo,o.medidas,p.nombreProducto, SUM(d.CantidaSalida) as cantidad, d.precioSalida,d.CantidaSalida as costo from detalleSalida d join ordenProduccion o on d.idOrden=o.idOrden join Productos p on d.codProducto=p.codProducto join Mecanico m on m.idMecanico=o.idMecanico WHERE o.idOrden LIKE '%rde%' GROUP BY p.codProducto LIMIT 0;";
 
 ///////// LO QUE OCURRE AL TECLEAR SOBRE EL INPUT DE BUSQUEDA ////////////
 if(isset($_POST['getOrdenes']))
@@ -35,6 +36,7 @@ if ($buscarOrdenes->num_rows > 0)
 			<td>COSTO</td>
 		</tr>';
 
+		
 	while($queryOrden= $buscarOrdenes->fetch_assoc())
 	{
 		$tabla.=
@@ -51,9 +53,13 @@ if ($buscarOrdenes->num_rows > 0)
 			<td>'.$queryOrden['costo'].'</td>
 		 </tr>
 		';
+
+		$total=$total+$queryOrden['costo'];
+
 	}
 
 	$tabla.='</table>';
+	
 } else
 	{
 		$tabla="No ha Seleccionado Orden :(.";
@@ -61,4 +67,5 @@ if ($buscarOrdenes->num_rows > 0)
 
 
 echo $tabla;
+echo "<a align='right'><h3><b>Costo Total: $total<b></h3></a>";
 ?>

@@ -37,7 +37,7 @@ class Productos extends Conectar
 		values
 		 ('".$_POST["codigo"]."','".$_POST["nombre"]."','".$_POST["descripcion"]."',
 		 0, CURRENT_TIMESTAMP,
-		 '".$_POST["categoria"]."',0,'".$_POST["stock"]."');";
+		 '".(strtoupper($_POST["categoria"]))."',0,'".$_POST["stock"]."');";
 		 $this->db->query($sql);
 	}
 }

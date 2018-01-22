@@ -21,6 +21,16 @@ if (isset($_POST["search"])) {
     <script src="jquery-3.2.1.min.js" type="text/javascript"></script>
     <script src="js/funciones.js" type="text/javascript"></script>
 </head>
+<script>
+function validateForm() {
+    var x = document.forms["form"]["cantidad"].value;
+   
+    if (x ==0) {
+        alert("Ya no hay de este producto");
+        return false;
+    }
+}
+</script>
 <body>
 
 	<div class="container" >
@@ -37,7 +47,7 @@ if (isset($_POST["search"])) {
   			</div>
   		<div class="panel-body">
 
-  		<form name="form" action="" method="post">
+  		<form name="form" action="" method="post" onsubmit="return validateForm()">
 
 			<div class="form-group col-md-2">
     			<label for="codigo"> Codigo Producto</label>
