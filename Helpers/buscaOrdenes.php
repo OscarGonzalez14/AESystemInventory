@@ -21,7 +21,8 @@ if(isset($_POST['getOrdenes']))
 $buscarOrdenes=$mysqli->query($query);
 if ($buscarOrdenes->num_rows > 0)
 {
-	$tabla.= 
+
+	$tabla.=
 	'<table class="table table-bordered">
 		<tr class="bg-primary">
 			<td>FECHA</td>
@@ -36,11 +37,12 @@ if ($buscarOrdenes->num_rows > 0)
 			<td>COSTO</td>
 		</tr>';
 
-		
+
 	while($queryOrden= $buscarOrdenes->fetch_assoc())
 	{
 		$tabla.=
-		'<tr>
+		'
+		<tr>
 			<td>'.$queryOrden['Fecha'].'</td>
 			<td>'.$queryOrden['NoOrden'].'</td>
 			<td>'.$queryOrden['Mecanico'].'</td>
@@ -59,7 +61,7 @@ if ($buscarOrdenes->num_rows > 0)
 	}
 
 	$tabla.='</table>';
-	
+
 } else
 	{
 		$tabla="No ha Seleccionado Orden :(.";

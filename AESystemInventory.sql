@@ -119,7 +119,7 @@ CREATE TABLE `detalleEntradas` (
   CONSTRAINT `detalleEntradas_ibfk_1` FOREIGN KEY (`codProducto`) REFERENCES `Productos` (`codProducto`),
   CONSTRAINT `detalleEntradas_ibfk_2` FOREIGN KEY (`idBodega`) REFERENCES `Bodega` (`idBodega`),
   CONSTRAINT `fk_detalleEntradas_Proveedor1` FOREIGN KEY (`idProveedor`) REFERENCES `Proveedor` (`idProveedor`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=2330 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=2342 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
 /*!50003 SET @saved_cs_results     = @@character_set_results */ ;
@@ -159,7 +159,7 @@ CREATE TABLE `detalleSalida` (
   KEY `idOrden` (`idOrden`),
   CONSTRAINT `detalleSalida_ibfk_1` FOREIGN KEY (`codProducto`) REFERENCES `Productos` (`codProducto`),
   CONSTRAINT `detalleSalida_ibfk_2` FOREIGN KEY (`idOrden`) REFERENCES `ordenProduccion` (`idOrden`)
-) ENGINE=InnoDB AUTO_INCREMENT=51 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=73 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
 /*!50003 SET @saved_cs_results     = @@character_set_results */ ;
@@ -209,4 +209,4 @@ CREATE TABLE `ordenProduccion` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-01-12 15:51:30
+-- Dump completed on 2018-02-13 17:14:37
